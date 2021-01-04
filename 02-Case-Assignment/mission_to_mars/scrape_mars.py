@@ -108,7 +108,31 @@ def mars_facts():
     return mars_facts_html
 # %%
 # # Mars Hemispheres
+def featured_image():
+    base_url = 'https://astrogeology.usgs.gov'
 
+    url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    browser.visit(url)
+
+    html = browser.html
+    img_soup = BeautifulSoup(html, 'html.parser')
+
+    try:
+        full_image_elem = browser.find_by_id('wide-image')[0]
+        full_image_elem.click()
+
+        html = browser.html
+        img_soup = BeautifulSoup(html, 'html.parser')
+
+        img_rel_url = img_soup.find('img', class_='wide-image')['src']
+        print(img_rel_url)
+    except Exception as e:
+        print(e)
+
+    featured_image_url  = f'{base_url}{img_rel_url}'
+    #print(featured_image_url)
+    
+    return featured_image_url
 
 # %%
 # Run Script
