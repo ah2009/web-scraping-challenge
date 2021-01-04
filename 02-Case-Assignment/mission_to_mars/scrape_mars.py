@@ -20,13 +20,15 @@ def scrape_all():
     news_title, news_p = mars_news()
     featured_img_url = featured_image()
     mars_facts_html = mars_facts()
+    featured2_image_url = featured2_image()
 
     # Assemble the document to insert into the database
     nasa_document = {
         'news_title': news_title,
         'news_paragraph': news_p,
         'featured_img_url': featured_img_url,
-        'mars_facts_html': mars_facts_html
+        'mars_facts_html': mars_facts_html,
+        'featured2_image_url': featured2_image_url
     }
 
     # consider closing browser here
@@ -108,7 +110,7 @@ def mars_facts():
     return mars_facts_html
 # %%
 # # Mars Hemispheres
-def featured_image():
+def featured2_image():
     base_url = 'https://astrogeology.usgs.gov'
 
     url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
@@ -129,10 +131,10 @@ def featured_image():
     except Exception as e:
         print(e)
 
-    featured_image_url  = f'{base_url}{img_rel_url}'
+    featured2_image_url  = f'{base_url}{img_rel_url}'
     #print(featured_image_url)
     
-    return featured_image_url
+    return featured2_image_url
 
 # %%
 # Run Script
